@@ -1,21 +1,17 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_THOUGHTS } from '../utils/queries';
 import ThoughtList from '../components/ThoughtList';
 
-const Home = () => {
-  // use useQuery o make the query request
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+import { useQuery } from '@apollo/react-hooks';
+import { QUERY_THOUGHTS } from '../utils/queries';
 
-  // if data exists, store it in the thoughts component
-  // if undefined, save an empty array to the thoughts component
+const Home = () => {
+  const { loading, data } = useQuery(QUERY_THOUGHTS);
   const thoughts = data?.thoughts || [];
-  console.log(thoughts);
 
   return (
     <main>
-      <div className='flex-row justify-space-between'>
-        <div className='col-12 mb-3'>
+      <div className="flex-row justify-space-between">
+        <div className="col-12 mb-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
